@@ -23,6 +23,8 @@ using osu.Game.Graphics.Containers;
 using osu.Game.Graphics.UserInterface;
 using osu.Game.Overlays.Settings;
 using osuTK.Graphics;
+using osu.Framework.Extensions.LocalisationExtensions;
+using System.Diagnostics;
 
 namespace osu.Game.Overlays
 {
@@ -84,6 +86,13 @@ namespace osu.Game.Overlays
         [BackgroundDependencyLoader]
         private void load()
         {
+            searchTextBox = new SettingsSearchTextBox
+            {
+                RelativeSizeAxes = Axes.X,
+                Origin = Anchor.TopCentre,
+                Anchor = Anchor.TopCentre,
+            };
+
             InternalChild = ContentContainer = new NonMaskedContent
             {
                 X = -WIDTH + ExpandedPosition,
@@ -91,26 +100,26 @@ namespace osu.Game.Overlays
                 RelativeSizeAxes = Axes.Y,
                 Children = new Drawable[]
                 {
-                    new Box
-                    {
-                        Anchor = Anchor.TopRight,
-                        Origin = Anchor.TopRight,
-                        Scale = new Vector2(2, 1), // over-extend to the left for transitions
-                        RelativeSizeAxes = Axes.Both,
-                        Colour = colourProvider.Background4,
-                        Alpha = 1,
-                    },
-                    loading = new LoadingLayer
-                    {
-                        State = { Value = Visibility.Visible }
-                    }
+            new Box
+            {
+                Anchor = Anchor.TopRight,
+                Origin = Anchor.TopRight,
+                Scale = new Vector2(2, 1), // over-extend to the left for transitions
+                RelativeSizeAxes = Axes.Both,
+                Colour = colourProvider.Background4,
+                Alpha = 1,
+            },
+            loading = new LoadingLayer
+            {
+                State = { Value = Visibility.Visible }
+            }
                 }
             };
 
             Add(new PopoverContainer
             {
                 RelativeSizeAxes = Axes.Both,
-                Child = SectionsContainer = new SettingsSectionsContainer
+                Child = SectionsContainer = new SettingsSectionsContainer(searchTextBox, loadableSections)
                 {
                     Masking = true,
                     EdgeEffect = new EdgeEffectParameters
@@ -135,12 +144,7 @@ namespace osu.Game.Overlays
                         },
                         Anchor = Anchor.TopCentre,
                         Origin = Anchor.TopCentre,
-                        Child = searchTextBox = new SettingsSearchTextBox
-                        {
-                            RelativeSizeAxes = Axes.X,
-                            Origin = Anchor.TopCentre,
-                            Anchor = Anchor.TopCentre,
-                        }
+                        Child = searchTextBox
                     },
                     Footer = CreateFooter().With(f => f.Alpha = 0)
                 }
@@ -299,12 +303,65 @@ namespace osu.Game.Overlays
 
         public partial class SettingsSectionsContainer : SectionsContainer<SettingsSection>
         {
+            private readonly SeekLimitedSearchTextBox searchTextBox;
+            private readonly List<SettingsSection> loadableSections;
+
+            public SettingsSectionsContainer(SeekLimitedSearchTextBox searchTextBox, List<SettingsSection> loadableSections)
+            {
+                this.searchTextBox = searchTextBox ?? throw new ArgumentNullException(nameof(searchTextBox)); // Ensure it's not null
+                this.loadableSections = loadableSections ?? new List<SettingsSection>(); // Ensure it's not null
+            }
+
             public SearchContainer<SettingsSection> SearchContainer;
 
             public string SearchTerm
             {
                 get => SearchContainer.SearchTerm;
-                set => SearchContainer.SearchTerm = value;
+                set
+                {
+                    if (isValidSearchTerm(value))
+                    {
+                        // If the full input is valid, accept it
+                        SearchContainer.SearchTerm = value;
+                    }
+                    else
+                    {
+                        // If the input is invalid, remove the last character until it's valid
+                        while (!isValidSearchTerm(value) && value.Length > 0)
+                        {
+                            value = value.Remove(value.Length - 1);
+                        }
+
+                        // Set the valid portion of the string back to the search text box
+                        searchTextBox.Text = value;
+
+                        // Optionally, provide feedback (like an error message) here
+                    }
+                }
+            }
+
+            private bool isValidSearchTerm(string term)
+            {
+
+                // Logic to check if the term matches any valid settings section
+                if (string.IsNullOrEmpty(term))
+                {
+                    Debug.WriteLine("you good");
+                    return true; // Show all settings if the search term is null or empty
+                }
+
+                return loadableSections.Any(section =>
+                {
+                    Debug.WriteLine("We in baby");
+                    string headerString = section.Header.ToString() ?? string.Empty; // Ensure headerString is not null
+                    if (headerString == null)
+                    {
+                        Debug.WriteLine("Warning: section.Header.ToString() returned null");
+                        return false;
+                    }
+
+                    return headerString.Contains(term, StringComparison.CurrentCultureIgnoreCase);
+                });
             }
 
             protected override FlowContainer<SettingsSection> CreateScrollContentContainer()
