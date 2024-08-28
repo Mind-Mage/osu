@@ -143,7 +143,31 @@ namespace osu.Game.Overlays.BeatmapListing
         }
 
         public void Search(string query)
-            => Schedule(() => searchControl.Query.Value = query);
+        {
+            // Validate and clean up the query before setting it
+            query = ValidateQuery(query);
+
+            Schedule(() => searchControl.Query.Value = query);
+        }
+
+        private string ValidateQuery(string query)
+        {
+            // Implement your validation logic here.
+            // For example, remove invalid characters or restrict input length
+            while (!isValidSearchTerm(query) && query.Length > 0)
+            {
+                query = query.Remove(query.Length - 1);
+            }
+
+            return query;
+        }
+
+        private bool isValidSearchTerm(string term)
+        {
+            // Implement your validation logic here
+            // Example: return false if the term contains invalid characters
+            return !term.Contains("badinput"); // Replace with actual validation
+        }
 
         public void FilterGenre(SearchGenre genre)
             => Schedule(() => searchControl.Genre.Value = genre);
@@ -157,10 +181,20 @@ namespace osu.Game.Overlays.BeatmapListing
 
             config.BindWith(OsuSetting.BeatmapListingCardSize, cardSize);
 
-            searchControl.Query.BindValueChanged(_ =>
+            searchControl.Query.BindValueChanged(e =>
             {
-                resetSortControl();
-                queueUpdateSearch(true);
+                // Validate the query string each time it changes
+                string validatedQuery = ValidateQuery(e.NewValue);
+
+                // Assign the validated query back to the Query property
+                searchControl.Query.Value = validatedQuery;
+
+                // Proceed with the search if the query is valid
+                if (!string.IsNullOrEmpty(validatedQuery))
+                {
+                    resetSortControl();
+                    queueUpdateSearch(true);
+                }
             });
 
             searchControl.Category.BindValueChanged(_ =>
@@ -217,11 +251,25 @@ namespace osu.Game.Overlays.BeatmapListing
             if (!api.IsLoggedIn)
                 return;
 
-            queryChangedDebounce = Scheduler.AddDelayed(() =>
+            // Validate and clean up the query before performing the search
+            string validatedQuery = ValidateQuery(searchControl.Query.Value);
+
+            // Only perform the search if the validated query is not empty
+            if (!string.IsNullOrEmpty(validatedQuery))
             {
-                resetSearch();
-                FetchNextPage();
-            }, queryTextChanged ? 500 : 100);
+                queryChangedDebounce = Scheduler.AddDelayed(() =>
+                {
+                    // Reset the search and fetch the next page with the validated query
+                    searchControl.Query.Value = validatedQuery;
+                    resetSearch();
+                    FetchNextPage();
+                }, queryTextChanged ? 500 : 100);
+            }
+            else
+            {
+                // Optionally provide feedback if the query is invalid or empty
+                searchControl.Query.Value = string.Empty;
+            }
         }
 
         private void performRequest()
