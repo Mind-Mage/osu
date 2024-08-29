@@ -38,7 +38,7 @@ namespace osu.Game.Rulesets.Osu.Scoring
                     setComboResult(ComboResult.Good);
                     break;
 
-                case HitResult.Meh:
+                case HitResult.Bad:
                 case HitResult.Miss:
                     setComboResult(ComboResult.None);
                     break;
@@ -106,7 +106,7 @@ namespace osu.Game.Rulesets.Osu.Scoring
 
                     break;
 
-                case HitResult.Meh:
+                case HitResult.Bad:
                     return 0.002;
 
                 case HitResult.Ok:

@@ -33,7 +33,7 @@ namespace osu.Game.Rulesets.Taiko.Difficulty
 
             countGreat = score.Statistics.GetValueOrDefault(HitResult.Great);
             countOk = score.Statistics.GetValueOrDefault(HitResult.Ok);
-            countMeh = score.Statistics.GetValueOrDefault(HitResult.Meh);
+            countMeh = score.Statistics.GetValueOrDefault(HitResult.Bad);
             countMiss = score.Statistics.GetValueOrDefault(HitResult.Miss);
             accuracy = customAccuracy;
 

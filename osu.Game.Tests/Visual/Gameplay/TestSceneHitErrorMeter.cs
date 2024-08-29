@@ -57,8 +57,8 @@ namespace osu.Game.Tests.Visual.Gameplay
                 newJudgement(offset, drawableRuleset.HitWindows.ResultFor(offset));
             }, 400);
 
-            AddRepeatStep("New max negative", () => newJudgement(-drawableRuleset.HitWindows.WindowFor(HitResult.Meh)), 20);
-            AddRepeatStep("New max positive", () => newJudgement(drawableRuleset.HitWindows.WindowFor(HitResult.Meh)), 20);
+            AddRepeatStep("New max negative", () => newJudgement(-drawableRuleset.HitWindows.WindowFor(HitResult.Bad)), 20);
+            AddRepeatStep("New max positive", () => newJudgement(drawableRuleset.HitWindows.WindowFor(HitResult.Bad)), 20);
             AddStep("New fixed judgement (50ms)", () => newJudgement(50));
 
             ScheduledDelegate del = null;
@@ -208,7 +208,7 @@ namespace osu.Game.Tests.Visual.Gameplay
                 {
                     new OsuSpriteText { Text = $@"Great: {hitWindows?.WindowFor(HitResult.Great)}" },
                     new OsuSpriteText { Text = $@"Good: {hitWindows?.WindowFor(HitResult.Ok)}" },
-                    new OsuSpriteText { Text = $@"Meh: {hitWindows?.WindowFor(HitResult.Meh)}" },
+                    new OsuSpriteText { Text = $@"Meh: {hitWindows?.WindowFor(HitResult.Bad)}" },
                 }
             });
 

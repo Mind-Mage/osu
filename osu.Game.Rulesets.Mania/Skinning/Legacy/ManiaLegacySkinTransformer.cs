@@ -34,7 +34,7 @@ namespace osu.Game.Rulesets.Mania.Skinning.Legacy
                 { HitResult.Great, LegacyManiaSkinConfigurationLookups.Hit300 },
                 { HitResult.Good, LegacyManiaSkinConfigurationLookups.Hit200 },
                 { HitResult.Ok, LegacyManiaSkinConfigurationLookups.Hit100 },
-                { HitResult.Meh, LegacyManiaSkinConfigurationLookups.Hit50 },
+                { HitResult.Bad, LegacyManiaSkinConfigurationLookups.Hit50 },
                 { HitResult.Miss, LegacyManiaSkinConfigurationLookups.Hit0 }
             };
 
@@ -49,7 +49,7 @@ namespace osu.Game.Rulesets.Mania.Skinning.Legacy
                 { HitResult.Great, "mania-hit300" },
                 { HitResult.Good, "mania-hit200" },
                 { HitResult.Ok, "mania-hit100" },
-                { HitResult.Meh, "mania-hit50" },
+                { HitResult.Bad, "mania-hit50" },
                 { HitResult.Miss, "mania-hit0" }
             };
 

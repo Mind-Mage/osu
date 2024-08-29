@@ -49,7 +49,7 @@ namespace osu.Game.Rulesets.Osu.Tests
                 new OsuReplayFrame(time_slider_end - 100, slider_end_position + offset_inside_follow, OsuAction.LeftButton),
             });
 
-            assertHeadJudgement(HitResult.Meh);
+            assertHeadJudgement(HitResult.Bad);
             assertTickJudgement(HitResult.LargeTickHit);
             assertTailJudgement(HitResult.SliderTailHit);
             assertSliderJudgement(HitResult.IgnoreHit);
@@ -66,7 +66,7 @@ namespace osu.Game.Rulesets.Osu.Tests
                 new OsuReplayFrame(time_slider_end - 50, slider_end_position + offset_inside_follow, OsuAction.LeftButton),
             });
 
-            assertHeadJudgement(HitResult.Meh);
+            assertHeadJudgement(HitResult.Bad);
             assertTickJudgement(HitResult.LargeTickMiss);
             assertTailJudgement(HitResult.IgnoreMiss);
             assertSliderJudgement(HitResult.IgnoreHit);
@@ -84,7 +84,7 @@ namespace osu.Game.Rulesets.Osu.Tests
                 new OsuReplayFrame(time_slider_end - 50, slider_end_position + offset_inside_follow, OsuAction.LeftButton),
             });
 
-            assertHeadJudgement(HitResult.Meh);
+            assertHeadJudgement(HitResult.Bad);
             assertTickJudgement(HitResult.LargeTickMiss);
             assertTailJudgement(HitResult.IgnoreMiss);
             assertSliderJudgement(HitResult.IgnoreHit);
@@ -100,7 +100,7 @@ namespace osu.Game.Rulesets.Osu.Tests
                 new OsuReplayFrame(time_slider_end - 100, slider_end_position + offset_outside_follow, OsuAction.LeftButton),
             });
 
-            assertHeadJudgement(HitResult.Meh);
+            assertHeadJudgement(HitResult.Bad);
             assertTickJudgement(HitResult.LargeTickMiss);
             assertTailJudgement(HitResult.IgnoreMiss);
             assertSliderJudgement(HitResult.IgnoreHit);

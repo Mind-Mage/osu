@@ -29,6 +29,7 @@ namespace osu.Game.Localisation
         /// </summary>
         public static LocalisableString GameplayCursorSize => new TranslatableString(getKey(@"gameplay_cursor_size"), @"Gameplay cursor size");
 
+ 
         /// <summary>
         /// "Adjust gameplay cursor size based on current beatmap"
         /// </summary>

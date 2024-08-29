@@ -33,7 +33,7 @@ namespace osu.Game.Rulesets.Judgements
         ///     <description>Valid <see cref="MinResult"/>s</description>
         ///   </listheader>
         /// <item>
-        ///   <term><see cref="HitResult.Perfect"/>, <see cref="HitResult.Great"/>, <see cref="HitResult.Good"/>, <see cref="HitResult.Ok"/>, <see cref="HitResult.Meh"/></term>
+        ///   <term><see cref="HitResult.Perfect"/>, <see cref="HitResult.Great"/>, <see cref="HitResult.Good"/>, <see cref="HitResult.Ok"/>, <see cref="HitResult.Bad"/></term>
         ///   <description><see cref="HitResult.Miss"/></description>
         /// </item>
         /// <item>
@@ -117,7 +117,7 @@ namespace osu.Game.Rulesets.Judgements
                 case HitResult.Miss:
                     return -DEFAULT_MAX_HEALTH_INCREASE * 2;
 
-                case HitResult.Meh:
+                case HitResult.Bad:
                     return DEFAULT_MAX_HEALTH_INCREASE * 0.05;
 
                 case HitResult.Ok:

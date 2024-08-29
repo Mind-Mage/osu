@@ -174,7 +174,7 @@ namespace osu.Game.Scoring.Legacy
             {
                 case 0:
                 case 3:
-                    return getCount(scoreInfo, HitResult.Meh);
+                    return getCount(scoreInfo, HitResult.Bad);
 
                 case 2:
                     return getCount(scoreInfo, HitResult.SmallTickHit);
@@ -189,7 +189,7 @@ namespace osu.Game.Scoring.Legacy
             {
                 case 0:
                 case 3:
-                    scoreInfo.Statistics[HitResult.Meh] = value;
+                    scoreInfo.Statistics[HitResult.Bad] = value;
                     break;
 
                 case 2:

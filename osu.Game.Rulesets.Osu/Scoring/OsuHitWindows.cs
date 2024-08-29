@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.Osu.Scoring
         {
             new DifficultyRange(HitResult.Great, 80, 50, 20),
             new DifficultyRange(HitResult.Ok, 140, 100, 60),
-            new DifficultyRange(HitResult.Meh, 200, 150, 100),
+            new DifficultyRange(HitResult.Bad, 200, 150, 100),
             new DifficultyRange(HitResult.Miss, MISS_WINDOW, MISS_WINDOW, MISS_WINDOW),
         };
 
@@ -26,7 +26,7 @@ namespace osu.Game.Rulesets.Osu.Scoring
             {
                 case HitResult.Great:
                 case HitResult.Ok:
-                case HitResult.Meh:
+                case HitResult.Bad:
                 case HitResult.Miss:
                     return true;
             }

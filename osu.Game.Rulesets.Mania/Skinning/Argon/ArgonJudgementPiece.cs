@@ -114,7 +114,7 @@ namespace osu.Game.Rulesets.Mania.Skinning.Argon
 
                 switch (result)
                 {
-                    case HitResult.Meh:
+                    case HitResult.Bad:
                         countSmall = 3;
                         travel *= 0.3f;
                         break;

@@ -333,7 +333,7 @@ namespace osu.Game.Rulesets.Scoring
                 case HitResult.SliderTailHit:
                     return 150;
 
-                case HitResult.Meh:
+                case HitResult.Bad:
                     return 50;
 
                 case HitResult.Ok:

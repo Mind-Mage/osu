@@ -63,7 +63,7 @@ namespace osu.Game.Rulesets.Osu.Scoring
                     increase = hitObject is SliderTick ? 0.015 : 0.02;
                     break;
 
-                case HitResult.Meh:
+                case HitResult.Bad:
                     increase = 0.002;
                     break;
 

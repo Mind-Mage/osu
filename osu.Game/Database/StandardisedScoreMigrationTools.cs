@@ -147,7 +147,7 @@ namespace osu.Game.Database
             switch (hitResult)
             {
                 case HitResult.Miss:
-                case HitResult.Meh:
+                case HitResult.Bad:
                 case HitResult.Ok:
                 case HitResult.Good:
                 case HitResult.Great:
@@ -207,7 +207,7 @@ namespace osu.Game.Database
                     case HitResult.LargeTickHit:
                         return 30;
 
-                    case HitResult.Meh:
+                    case HitResult.Bad:
                         return 50;
 
                     case HitResult.Ok:

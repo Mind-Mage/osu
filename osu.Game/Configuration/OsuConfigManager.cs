@@ -106,6 +106,10 @@ namespace osu.Game.Configuration
             // Input
             SetDefault(OsuSetting.MenuCursorSize, 1.0f, 0.5f, 2f, 0.01f);
             SetDefault(OsuSetting.GameplayCursorSize, 1.0f, 0.1f, 2f, 0.01f);
+            //------------------------------------zack code--------------------
+            SetDefault(OsuSetting.CursorTrailDensity, 1.0f, 0.01f, 10.0f, 0.1f);
+            SetDefault(OsuSetting.CursorTrailSize, 1.0f, 0.1f, 100.0f, 0.1f);
+            //-------------------------------------------------------------
             SetDefault(OsuSetting.GameplayCursorDuringTouch, false);
             SetDefault(OsuSetting.AutoCursorSize, false);
 
@@ -324,6 +328,10 @@ namespace osu.Game.Configuration
         Token,
         MenuCursorSize,
         GameplayCursorSize,
+        //------zack code----
+        CursorTrailDensity,
+        CursorTrailSize,
+        //------------------
         AutoCursorSize,
         GameplayCursorDuringTouch,
         DimLevel,

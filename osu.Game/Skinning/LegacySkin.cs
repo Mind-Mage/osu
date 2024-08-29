@@ -452,7 +452,7 @@ namespace osu.Game.Skinning
         {
             switch (result)
             {
-                case HitResult.Meh:
+                case HitResult.Bad:
                     return GetTexture("particle50");
 
                 case HitResult.Ok:
@@ -478,7 +478,7 @@ namespace osu.Game.Skinning
                 case HitResult.IgnoreMiss:
                     return this.GetAnimation("sliderendmiss", true, false);
 
-                case HitResult.Meh:
+                case HitResult.Bad:
                     return this.GetAnimation("hit50", true, false);
 
                 case HitResult.Ok:

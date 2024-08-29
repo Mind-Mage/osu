@@ -98,7 +98,7 @@ namespace osu.Game.Rulesets.Osu.Tests
                 s.TickDistanceMultiplier = 0.2f;
             });
 
-            assertHeadJudgement(HitResult.Meh);
+            assertHeadJudgement(HitResult.Bad);
             assertTickJudgement(0, HitResult.LargeTickHit);
             assertTickJudgement(1, HitResult.LargeTickHit);
             assertTickJudgement(2, HitResult.LargeTickHit);
@@ -124,7 +124,7 @@ namespace osu.Game.Rulesets.Osu.Tests
                 s.TickDistanceMultiplier = 0.2f;
             });
 
-            assertHeadJudgement(HitResult.Meh);
+            assertHeadJudgement(HitResult.Bad);
             assertTickJudgement(0, HitResult.LargeTickMiss);
             assertTickJudgement(1, HitResult.LargeTickMiss);
             assertTailJudgement(HitResult.IgnoreMiss);
@@ -179,7 +179,7 @@ namespace osu.Game.Rulesets.Osu.Tests
                 s.RepeatCount = 1;
             });
 
-            assertHeadJudgement(HitResult.Meh);
+            assertHeadJudgement(HitResult.Bad);
             assertAllTickJudgements(HitResult.LargeTickHit);
             assertRepeatJudgement(HitResult.LargeTickHit);
             assertTailJudgement(HitResult.SliderTailHit);
@@ -208,7 +208,7 @@ namespace osu.Game.Rulesets.Osu.Tests
                 s.RepeatCount = 1;
             });
 
-            assertHeadJudgement(HitResult.Meh);
+            assertHeadJudgement(HitResult.Bad);
             assertRepeatJudgement(HitResult.LargeTickHit);
             assertTailJudgement(HitResult.SliderTailHit);
             assertSliderJudgement(HitResult.IgnoreHit);
@@ -239,7 +239,7 @@ namespace osu.Game.Rulesets.Osu.Tests
                 s.SliderVelocityMultiplier = 6f;
             });
 
-            assertHeadJudgement(HitResult.Meh);
+            assertHeadJudgement(HitResult.Bad);
 
             // At least one tick was out of range, so they all should be missed.
             assertAllTickJudgements(HitResult.LargeTickMiss);
@@ -274,7 +274,7 @@ namespace osu.Game.Rulesets.Osu.Tests
                 s.SliderVelocityMultiplier = 3;
             });
 
-            assertHeadJudgement(HitResult.Meh);
+            assertHeadJudgement(HitResult.Bad);
             assertTickJudgement(0, HitResult.LargeTickMiss);
             assertTailJudgement(HitResult.SliderTailHit);
             assertSliderJudgement(HitResult.IgnoreHit);
@@ -304,7 +304,7 @@ namespace osu.Game.Rulesets.Osu.Tests
                 s.SliderVelocityMultiplier = 3;
             });
 
-            assertHeadJudgement(HitResult.Meh);
+            assertHeadJudgement(HitResult.Bad);
             assertTickJudgement(0, HitResult.LargeTickMiss);
             assertTickJudgement(1, HitResult.LargeTickMiss);
             assertTailJudgement(HitResult.SliderTailHit);
@@ -335,7 +335,7 @@ namespace osu.Game.Rulesets.Osu.Tests
                 s.SliderVelocityMultiplier = 4;
             });
 
-            assertHeadJudgement(HitResult.Meh);
+            assertHeadJudgement(HitResult.Bad);
             assertTickJudgement(0, HitResult.LargeTickMiss);
             assertTailJudgement(HitResult.IgnoreMiss);
             assertSliderJudgement(HitResult.IgnoreHit);

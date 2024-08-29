@@ -41,8 +41,8 @@ namespace osu.Game.Rulesets.Mania.Objects.Drawables
             // If the head wasn't hit or the hold note was broken, cap the max score to Meh.
             bool hasComboBreak = !HoldNote.Head.IsHit || HoldNote.Body.HasHoldBreak;
 
-            if (result > HitResult.Meh && hasComboBreak)
-                return HitResult.Meh;
+            if (result > HitResult.Bad && hasComboBreak)
+                return HitResult.Bad;
 
             return result;
         }
