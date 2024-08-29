@@ -177,7 +177,7 @@ namespace osu.Game.Tests.Gameplay
         }
 
         [TestCase(HitResult.Miss)]
-        [TestCase(HitResult.Meh)]
+        [TestCase(HitResult.Bad)]
         public void TestMultipleFailConditions(HitResult resultApplied)
         {
             var beatmap = createBeatmap(0, 1000);
@@ -186,7 +186,7 @@ namespace osu.Game.Tests.Gameplay
             AddStep("setup multiple fail conditions", () =>
             {
                 processor.FailConditions += ((_, result) => result.Type == HitResult.Miss);
-                processor.FailConditions += ((_, result) => result.Type == HitResult.Meh);
+                processor.FailConditions += ((_, result) => result.Type == HitResult.Bad);
             });
 
             AddStep("apply perfect hit result", () => processor.ApplyResult(new JudgementResult(beatmap.HitObjects[0], new Judgement()) { Type = HitResult.Perfect }));

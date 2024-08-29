@@ -28,7 +28,7 @@ namespace osu.Game.Rulesets.Mania.Scoring
                 case HitResult.Great:
                 case HitResult.Good:
                 case HitResult.Ok:
-                case HitResult.Meh:
+                case HitResult.Bad:
                 case HitResult.Miss:
                     return true;
             }

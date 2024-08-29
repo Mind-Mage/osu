@@ -276,7 +276,7 @@ namespace osu.Game.Rulesets.Osu
             {
                 HitResult.Great,
                 HitResult.Ok,
-                HitResult.Meh,
+                HitResult.Bad,
 
                 HitResult.LargeTickHit,
                 HitResult.SmallTickHit,

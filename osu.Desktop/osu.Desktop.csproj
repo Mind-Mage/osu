@@ -7,7 +7,7 @@
     <AssemblyName>osu!</AssemblyName>
     <Title>osu!</Title>
     <Product>osu!(lazer)</Product>
-    <ApplicationIcon>lazer.ico</ApplicationIcon>
+    <ApplicationIcon>lazer.ico</ApplicationIcon> 
     <Version>0.0.0</Version>
     <FileVersion>0.0.0</FileVersion>
   </PropertyGroup>

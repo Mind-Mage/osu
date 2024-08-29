@@ -193,7 +193,7 @@ namespace osu.Game.Tests.Resources
             Statistics = new Dictionary<HitResult, int>
             {
                 [HitResult.Miss] = 1,
-                [HitResult.Meh] = 50,
+                [HitResult.Bad] = 50,
                 [HitResult.Ok] = 100,
                 [HitResult.Good] = 200,
                 [HitResult.Great] = 300,

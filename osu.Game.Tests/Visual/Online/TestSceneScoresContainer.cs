@@ -298,7 +298,7 @@ namespace osu.Game.Tests.Visual.Online
                     { HitResult.Great, greatCount },
                     { HitResult.LargeTickHit, tickCount },
                     { HitResult.Ok, RNG.Next(100) },
-                    { HitResult.Meh, RNG.Next(100) },
+                    { HitResult.Bad, RNG.Next(100) },
                     { HitResult.Miss, initial_great_count - greatCount },
                     { HitResult.LargeTickMiss, initial_tick_count - tickCount },
                 };

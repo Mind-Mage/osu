@@ -73,7 +73,7 @@ namespace osu.Game.Tests.Visual.Ranking
             {
                 double offset = Math.Abs(h.TimeOffset);
                 HitResult result = offset > 36 ? HitResult.Miss
-                    : offset > 32 ? HitResult.Meh
+                    : offset > 32 ? HitResult.Bad
                     : offset > 24 ? HitResult.Ok
                     : offset > 16 ? HitResult.Good
                     : offset > 8 ? HitResult.Great
@@ -97,7 +97,7 @@ namespace osu.Game.Tests.Visual.Ranking
             {
                 double offset = Math.Abs(h.TimeOffset);
                 HitResult result = offset > 36 ? HitResult.Miss
-                    : offset > 32 ? HitResult.Meh
+                    : offset > 32 ? HitResult.Bad
                     : offset > 24 ? HitResult.Ok
                     : offset > 16 ? HitResult.Good
                     : offset > 8 ? HitResult.Great
@@ -109,7 +109,7 @@ namespace osu.Game.Tests.Visual.Ranking
             {
                 double offset = Math.Abs(h.TimeOffset);
                 HitResult result = offset > 25 ? HitResult.Miss
-                    : offset > 20 ? HitResult.Meh
+                    : offset > 20 ? HitResult.Bad
                     : offset > 15 ? HitResult.Ok
                     : offset > 10 ? HitResult.Good
                     : offset > 5 ? HitResult.Great

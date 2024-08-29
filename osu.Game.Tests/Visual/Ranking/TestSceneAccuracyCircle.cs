@@ -110,7 +110,7 @@ namespace osu.Game.Tests.Visual.Ranking
             var statistics = new Dictionary<HitResult, int>
             {
                 { HitResult.Miss, missCount },
-                { HitResult.Meh, 50 },
+                { HitResult.Bad, 50 },
                 { HitResult.Good, 100 },
                 { HitResult.Great, 300 },
             };

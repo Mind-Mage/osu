@@ -21,7 +21,7 @@ namespace osu.Game.Rulesets.Scoring
             new DifficultyRange(HitResult.Great, 64, 49, 34),
             new DifficultyRange(HitResult.Good, 97, 82, 67),
             new DifficultyRange(HitResult.Ok, 127, 112, 97),
-            new DifficultyRange(HitResult.Meh, 151, 136, 121),
+            new DifficultyRange(HitResult.Bad, 151, 136, 121),
             new DifficultyRange(HitResult.Miss, 188, 173, 158),
         };
 
@@ -50,7 +50,7 @@ namespace osu.Game.Rulesets.Scoring
         /// <returns>The lowest allowed successful <see cref="HitResult"/>.</returns>
         protected HitResult LowestSuccessfulHitResult()
         {
-            for (var result = HitResult.Meh; result <= HitResult.Perfect; ++result)
+            for (var result = HitResult.Bad; result <= HitResult.Perfect; ++result)
             {
                 if (IsHitResultAllowed(result))
                     return result;
@@ -64,7 +64,7 @@ namespace osu.Game.Rulesets.Scoring
         /// </summary>
         public IEnumerable<(HitResult result, double length)> GetAllAvailableWindows()
         {
-            for (var result = HitResult.Meh; result <= HitResult.Perfect; ++result)
+            for (var result = HitResult.Bad; result <= HitResult.Perfect; ++result)
             {
                 if (IsHitResultAllowed(result))
                     yield return (result, WindowFor(result));
@@ -94,7 +94,7 @@ namespace osu.Game.Rulesets.Scoring
                         miss = value;
                         break;
 
-                    case HitResult.Meh:
+                    case HitResult.Bad:
                         meh = value;
                         break;
 
@@ -157,7 +157,7 @@ namespace osu.Game.Rulesets.Scoring
                 case HitResult.Ok:
                     return ok;
 
-                case HitResult.Meh:
+                case HitResult.Bad:
                     return meh;
 
                 case HitResult.Miss:

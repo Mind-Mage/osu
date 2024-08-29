@@ -34,7 +34,7 @@ namespace osu.Game.Rulesets.Mania.Difficulty
             countGreat = score.Statistics.GetValueOrDefault(HitResult.Great);
             countGood = score.Statistics.GetValueOrDefault(HitResult.Good);
             countOk = score.Statistics.GetValueOrDefault(HitResult.Ok);
-            countMeh = score.Statistics.GetValueOrDefault(HitResult.Meh);
+            countMeh = score.Statistics.GetValueOrDefault(HitResult.Bad);
             countMiss = score.Statistics.GetValueOrDefault(HitResult.Miss);
             scoreAccuracy = calculateCustomAccuracy();
 

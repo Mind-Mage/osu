@@ -80,7 +80,7 @@ namespace osu.Game.Tests.Visual.Gameplay
 
             AddRepeatStep("Add judgement", () => applyOneJudgement(HitResult.Great), 2);
             AddRepeatStep("Add judgement", () => applyOneJudgement(HitResult.Miss), 2);
-            AddRepeatStep("Add judgement", () => applyOneJudgement(HitResult.Meh), 2);
+            AddRepeatStep("Add judgement", () => applyOneJudgement(HitResult.Bad), 2);
         }
 
         [Test]

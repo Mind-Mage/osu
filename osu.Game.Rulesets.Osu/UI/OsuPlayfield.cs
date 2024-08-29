@@ -79,7 +79,7 @@ namespace osu.Game.Rulesets.Osu.UI
             {
                 HitResult.Great,
                 HitResult.Ok,
-                HitResult.Meh,
+                HitResult.Bad,
                 HitResult.Miss,
                 HitResult.LargeTickMiss,
                 HitResult.IgnoreMiss,

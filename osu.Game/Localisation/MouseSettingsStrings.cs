@@ -59,6 +59,20 @@ namespace osu.Game.Localisation
         /// </summary>
         public static LocalisableString CursorSensitivity => new TranslatableString(getKey(@"cursor_sensitivity"), @"Cursor sensitivity");
 
+        //-------------------------------zack code
+        /// <summary>
+        /// "Gameplay cursor density"
+        /// </summary>
+        public static LocalisableString CursorTrailDensity => new TranslatableString(getKey(@"Cursor_trail_density"), @"Cursor trail density");
+
+        /// <summary>
+        /// "Gameplay cursor density"
+        /// </summary>
+        public static LocalisableString CursorTrailSize => new TranslatableString(getKey(@"Cursor_trail_size"), @"Cursor trail size");
+
+        //-----------------------------------
+
+
         /// <summary>
         /// "This setting has known issues on your platform. If you encounter problems, it is recommended to adjust sensitivity externally and keep this disabled for now."
         /// </summary>

@@ -86,7 +86,7 @@ namespace osu.Game.Rulesets.Osu.Tests
             addJudgementAssert(hitObjects[0], HitResult.Miss);
             addJudgementAssert(hitObjects[1], HitResult.Miss);
             // note lock prevented the object from being hit, so the judgement offset should be very late.
-            addJudgementOffsetAssert(hitObjects[0], referenceHitWindows.WindowFor(HitResult.Meh));
+            addJudgementOffsetAssert(hitObjects[0], referenceHitWindows.WindowFor(HitResult.Bad));
             addClickActionAssert(0, ClickAction.Shake);
         }
 
@@ -123,7 +123,7 @@ namespace osu.Game.Rulesets.Osu.Tests
             addJudgementAssert(hitObjects[0], HitResult.Miss);
             addJudgementAssert(hitObjects[1], HitResult.Miss);
             // note lock prevented the object from being hit, so the judgement offset should be very late.
-            addJudgementOffsetAssert(hitObjects[0], referenceHitWindows.WindowFor(HitResult.Meh));
+            addJudgementOffsetAssert(hitObjects[0], referenceHitWindows.WindowFor(HitResult.Bad));
             addClickActionAssert(0, ClickAction.Shake);
         }
 
@@ -160,7 +160,7 @@ namespace osu.Game.Rulesets.Osu.Tests
             addJudgementAssert(hitObjects[0], HitResult.Miss);
             addJudgementAssert(hitObjects[1], HitResult.Miss);
             // note lock prevented the object from being hit, so the judgement offset should be very late.
-            addJudgementOffsetAssert(hitObjects[0], referenceHitWindows.WindowFor(HitResult.Meh));
+            addJudgementOffsetAssert(hitObjects[0], referenceHitWindows.WindowFor(HitResult.Bad));
             addClickActionAssert(0, ClickAction.Shake);
         }
 
@@ -195,8 +195,8 @@ namespace osu.Game.Rulesets.Osu.Tests
                 new OsuReplayFrame { Time = time_first_circle - 90, Position = positionSecondCircle, Actions = { OsuAction.RightButton } }
             });
 
-            addJudgementAssert(hitObjects[0], HitResult.Meh);
-            addJudgementAssert(hitObjects[1], HitResult.Meh);
+            addJudgementAssert(hitObjects[0], HitResult.Bad);
+            addJudgementAssert(hitObjects[1], HitResult.Bad);
             addJudgementOffsetAssert(hitObjects[0], -190); // time_first_circle - 190
             addJudgementOffsetAssert(hitObjects[1], -190); // time_second_circle - first_circle_time - 90
             addClickActionAssert(0, ClickAction.Hit);
@@ -234,7 +234,7 @@ namespace osu.Game.Rulesets.Osu.Tests
                 new OsuReplayFrame { Time = time_first_circle, Position = positionSecondCircle, Actions = { OsuAction.RightButton } }
             });
 
-            addJudgementAssert(hitObjects[0], HitResult.Meh);
+            addJudgementAssert(hitObjects[0], HitResult.Bad);
             addJudgementAssert(hitObjects[1], HitResult.Ok);
             addJudgementOffsetAssert(hitObjects[0], -190); // time_first_circle - 190
             addJudgementOffsetAssert(hitObjects[1], -100); // time_second_circle - first_circle_time
@@ -319,8 +319,8 @@ namespace osu.Game.Rulesets.Osu.Tests
             performTest(hitObjects, new List<ReplayFrame>
             {
                 new OsuReplayFrame { Time = time_slider, Position = positionSlider, Actions = { OsuAction.LeftButton } },
-                new OsuReplayFrame { Time = time_circle + referenceHitWindows.WindowFor(HitResult.Meh) - 100, Position = positionCircle, Actions = { OsuAction.RightButton } },
-                new OsuReplayFrame { Time = time_circle + referenceHitWindows.WindowFor(HitResult.Meh) - 90, Position = positionSlider, Actions = { OsuAction.LeftButton } },
+                new OsuReplayFrame { Time = time_circle + referenceHitWindows.WindowFor(HitResult.Bad) - 100, Position = positionCircle, Actions = { OsuAction.RightButton } },
+                new OsuReplayFrame { Time = time_circle + referenceHitWindows.WindowFor(HitResult.Bad) - 90, Position = positionSlider, Actions = { OsuAction.LeftButton } },
             });
 
             addJudgementAssert(hitObjects[0], HitResult.Ok);
@@ -368,7 +368,7 @@ namespace osu.Game.Rulesets.Osu.Tests
             performTest(hitObjects, frames);
 
             addJudgementAssert(hitObjects[0], HitResult.Great);
-            addJudgementAssert(hitObjects[1], HitResult.Meh);
+            addJudgementAssert(hitObjects[1], HitResult.Bad);
             addClickActionAssert(0, ClickAction.Hit);
         }
 
@@ -502,7 +502,7 @@ namespace osu.Game.Rulesets.Osu.Tests
 
             addJudgementAssert(hitObjects[0], HitResult.Miss);
             // note lock prevented the object from being hit, so the judgement offset should be very late.
-            addJudgementOffsetAssert(hitObjects[0], referenceHitWindows.WindowFor(HitResult.Meh));
+            addJudgementOffsetAssert(hitObjects[0], referenceHitWindows.WindowFor(HitResult.Bad));
             addClickActionAssert(0, ClickAction.Shake);
         }
 
@@ -552,7 +552,7 @@ namespace osu.Game.Rulesets.Osu.Tests
             // the slider head of the first slider prevents the second slider's head from being hit, so the judgement offset should be very late.
             // this is not strictly done by the hit policy implementation itself (see `OsuModClassic.blockInputToObjectsUnderSliderHead()`),
             // but we're testing this here anyways to just keep everything related to input handling and note lock in one place.
-            addJudgementOffsetAssert("second slider head", () => ((Slider)hitObjects[1]).HeadCircle, referenceHitWindows.WindowFor(HitResult.Meh));
+            addJudgementOffsetAssert("second slider head", () => ((Slider)hitObjects[1]).HeadCircle, referenceHitWindows.WindowFor(HitResult.Bad));
             addClickActionAssert(0, ClickAction.Hit);
         }
 
@@ -641,7 +641,7 @@ namespace osu.Game.Rulesets.Osu.Tests
             addJudgementAssert(hitObjects[0], HitResult.Great);
             addJudgementOffsetAssert(hitObjects[0], 0);
 
-            addJudgementAssert(hitObjects[1], HitResult.Meh);
+            addJudgementAssert(hitObjects[1], HitResult.Bad);
             addJudgementOffsetAssert(hitObjects[1], -150);
         }
 

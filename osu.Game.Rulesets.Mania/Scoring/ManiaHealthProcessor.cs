@@ -45,7 +45,7 @@ namespace osu.Game.Rulesets.Mania.Scoring
                             return -(Beatmap.Difficulty.DrainRate + 1) * 0.0075;
                     }
 
-                case HitResult.Meh:
+                case HitResult.Bad:
                     return -(Beatmap.Difficulty.DrainRate + 1) * 0.0016;
 
                 case HitResult.Ok:

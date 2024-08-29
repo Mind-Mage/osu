@@ -310,7 +310,7 @@ namespace osu.Game.Rulesets.Osu.Objects.Drawables
                     else
                     {
                         double hitFraction = (double)hitTicks / totalTicks;
-                        r.Type = hitFraction >= 0.5 ? HitResult.Ok : HitResult.Meh;
+                        r.Type = hitFraction >= 0.5 ? HitResult.Ok : HitResult.Bad;
                     }
                 });
             }

@@ -7,6 +7,7 @@ using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using osu.Framework.Allocation;
+using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Primitives;
 using osu.Framework.Graphics.Rendering;
@@ -17,6 +18,7 @@ using osu.Framework.Graphics.Textures;
 using osu.Framework.Input;
 using osu.Framework.Input.Events;
 using osu.Framework.Timing;
+using osu.Game.Configuration;
 using osuTK;
 using osuTK.Graphics;
 using osuTK.Graphics.ES30;
@@ -64,11 +66,56 @@ namespace osu.Game.Rulesets.Osu.UI.Cursor
             }
         }
 
+
+        //--------------Zack code--------------------------------
+        private float densityMultiplier = 1.0f; // Default value
+
+        public float DensityMultiplier
+        {
+            get => densityMultiplier;
+            set
+            {
+                if (densityMultiplier != value)
+                {
+                    densityMultiplier = value;
+                    Invalidate(Invalidation.DrawNode);
+                }
+            }
+        }
+
+        private float trailSizeMultiplier = 1.0f;
+
+        public float TrailSizeMultiplier
+        {
+            get => trailSizeMultiplier;
+            set
+            {
+                if (trailSizeMultiplier != value)
+                {
+                    trailSizeMultiplier = value;
+                    Invalidate(Invalidation.DrawNode);
+                }
+            }
+        }
+
+        //----------------------------------------------------------
+
         [BackgroundDependencyLoader]
-        private void load(IRenderer renderer, ShaderManager shaders)
+        private void load(IRenderer renderer, ShaderManager shaders, OsuConfigManager config)
         {
             texture ??= renderer.WhitePixel;
             shader = shaders.Load(@"CursorTrail", FragmentShaderDescriptor.TEXTURE);
+
+            //------------------------zack code-----------------------------------
+            // Bind the CursorTrailDensity setting and attach the value changed handler
+            Bindable<float> densityBindable = new BindableFloat();
+            config.BindWith(OsuSetting.CursorTrailDensity, densityBindable);
+            densityBindable.BindValueChanged(v => DensityMultiplier = v.NewValue, true);
+
+            Bindable<float> sizeBindable = new BindableFloat();
+            config.BindWith(OsuSetting.CursorTrailSize, sizeBindable);
+            sizeBindable.BindValueChanged(v => TrailSizeMultiplier = v.NewValue, true);
+            //------------------------zack code------------------------------------
         }
 
         protected override void LoadComplete()
@@ -166,8 +213,9 @@ namespace osu.Game.Rulesets.Osu.UI.Cursor
                     Vector2 diff = pos2 - pos1;
                     float distance = diff.Length;
                     Vector2 direction = diff / distance;
-
-                    float interval = Texture.DisplayWidth / 2.5f * IntervalMultiplier;
+                    //-----------------------------zack code-------------------------------------
+                    float interval = (Texture.DisplayWidth / 2.5f * IntervalMultiplier) / DensityMultiplier;
+                    //--------------------------------------------------------------------------
                     float stopAt = distance - (AvoidDrawingNearCursor ? interval : 0);
 
                     for (float d = interval; d < stopAt; d += interval)
@@ -190,6 +238,12 @@ namespace osu.Game.Rulesets.Osu.UI.Cursor
             parts[currentIndex].Time = time + 1;
             ++parts[currentIndex].InvalidationID;
 
+            //----------------zack code
+            // Adjust the size based on the multiplier
+            float size = Texture.DisplayWidth * TrailSizeMultiplier;
+            //-------------------------------
+
+
             currentIndex = (currentIndex + 1) % max_sprites;
         }
 
@@ -211,6 +265,7 @@ namespace osu.Game.Rulesets.Osu.UI.Cursor
 
             private float time;
             private float fadeExponent;
+            private float trailSizeMultiplier;
 
             private readonly TrailPart[] parts = new TrailPart[max_sprites];
             private Vector2 originPosition;
@@ -230,6 +285,7 @@ namespace osu.Game.Rulesets.Osu.UI.Cursor
                 texture = Source.texture;
                 time = Source.time;
                 fadeExponent = Source.FadeExponent;
+                trailSizeMultiplier = Source.TrailSizeMultiplier;
 
                 originPosition = Vector2.Zero;
 
@@ -278,9 +334,13 @@ namespace osu.Game.Rulesets.Osu.UI.Cursor
                     if (time - part.Time >= 1)
                         continue;
 
+                    // Use trailSizeMultiplier to adjust the size of the trail
+                    float adjustedWidth = texture.DisplayWidth * trailSizeMultiplier;
+                    float adjustedHeight = texture.DisplayHeight * trailSizeMultiplier;
+
                     vertexBatch.Add(new TexturedTrailVertex
                     {
-                        Position = new Vector2(part.Position.X - texture.DisplayWidth * originPosition.X, part.Position.Y + texture.DisplayHeight * (1 - originPosition.Y)),
+                        Position = new Vector2(part.Position.X - adjustedWidth * originPosition.X, part.Position.Y + adjustedHeight * (1 - originPosition.Y)),
                         TexturePosition = textureRect.BottomLeft,
                         TextureRect = new Vector4(0, 0, 1, 1),
                         Colour = DrawColourInfo.Colour.BottomLeft.Linear,
@@ -289,7 +349,7 @@ namespace osu.Game.Rulesets.Osu.UI.Cursor
 
                     vertexBatch.Add(new TexturedTrailVertex
                     {
-                        Position = new Vector2(part.Position.X + texture.DisplayWidth * (1 - originPosition.X), part.Position.Y + texture.DisplayHeight * (1 - originPosition.Y)),
+                        Position = new Vector2(part.Position.X + adjustedWidth * (1 - originPosition.X), part.Position.Y + adjustedHeight * (1 - originPosition.Y)),
                         TexturePosition = textureRect.BottomRight,
                         TextureRect = new Vector4(0, 0, 1, 1),
                         Colour = DrawColourInfo.Colour.BottomRight.Linear,
@@ -298,7 +358,7 @@ namespace osu.Game.Rulesets.Osu.UI.Cursor
 
                     vertexBatch.Add(new TexturedTrailVertex
                     {
-                        Position = new Vector2(part.Position.X + texture.DisplayWidth * (1 - originPosition.X), part.Position.Y - texture.DisplayHeight * originPosition.Y),
+                        Position = new Vector2(part.Position.X + adjustedWidth * (1 - originPosition.X), part.Position.Y - adjustedHeight * originPosition.Y),
                         TexturePosition = textureRect.TopRight,
                         TextureRect = new Vector4(0, 0, 1, 1),
                         Colour = DrawColourInfo.Colour.TopRight.Linear,
@@ -307,7 +367,7 @@ namespace osu.Game.Rulesets.Osu.UI.Cursor
 
                     vertexBatch.Add(new TexturedTrailVertex
                     {
-                        Position = new Vector2(part.Position.X - texture.DisplayWidth * originPosition.X, part.Position.Y - texture.DisplayHeight * originPosition.Y),
+                        Position = new Vector2(part.Position.X - adjustedWidth * originPosition.X, part.Position.Y - adjustedHeight * originPosition.Y),
                         TexturePosition = textureRect.TopLeft,
                         TextureRect = new Vector4(0, 0, 1, 1),
                         Colour = DrawColourInfo.Colour.TopLeft.Linear,

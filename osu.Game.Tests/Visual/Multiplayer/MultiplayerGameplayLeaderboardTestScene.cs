@@ -190,7 +190,7 @@ namespace osu.Game.Tests.Visual.Multiplayer
                     lastHeaders[userId] = header = new FrameHeader(0, 0, 0, 0, new Dictionary<HitResult, int>
                     {
                         [HitResult.Miss] = 0,
-                        [HitResult.Meh] = 0,
+                        [HitResult.Bad] = 0,
                         [HitResult.Great] = 0
                     }, new ScoreProcessorStatistics(), DateTimeOffset.Now);
                 }
@@ -205,7 +205,7 @@ namespace osu.Game.Tests.Visual.Multiplayer
                     case 1:
                         header.Combo++;
                         header.MaxCombo = Math.Max(header.MaxCombo, header.Combo);
-                        header.Statistics[HitResult.Meh]++;
+                        header.Statistics[HitResult.Bad]++;
                         break;
 
                     default:

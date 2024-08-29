@@ -107,7 +107,7 @@ namespace osu.Game.Rulesets.Osu.Mods
                     if (state != ArmedState.Hit)
                     {
                         double okWindow = dho.HitObject.HitWindows.WindowFor(HitResult.Ok);
-                        double lateMissFadeTime = dho.HitObject.HitWindows.WindowFor(HitResult.Meh) - okWindow;
+                        double lateMissFadeTime = dho.HitObject.HitWindows.WindowFor(HitResult.Bad) - okWindow;
                         dho.Delay(okWindow).FadeOut(lateMissFadeTime);
                     }
                 }

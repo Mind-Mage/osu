@@ -201,7 +201,7 @@ namespace osu.Game.Rulesets.Mania.Tests
 
             assertHeadJudgement(HitResult.Perfect);
             assertComboAtJudgement(0, 1);
-            assertTailJudgement(HitResult.Meh);
+            assertTailJudgement(HitResult.Bad);
             assertComboAtJudgement(1, 0);
             assertComboAtJudgement(3, 1);
         }
@@ -241,7 +241,7 @@ namespace osu.Game.Rulesets.Mania.Tests
             });
 
             assertHeadJudgement(HitResult.Perfect);
-            assertTailJudgement(HitResult.Meh);
+            assertTailJudgement(HitResult.Bad);
         }
 
         /// <summary>
@@ -275,7 +275,7 @@ namespace osu.Game.Rulesets.Mania.Tests
             });
 
             assertHeadJudgement(HitResult.Miss);
-            assertTailJudgement(HitResult.Meh);
+            assertTailJudgement(HitResult.Bad);
         }
 
         /// <summary>
@@ -428,7 +428,7 @@ namespace osu.Game.Rulesets.Mania.Tests
             });
 
             assertHeadJudgement(HitResult.Miss);
-            assertTailJudgement(HitResult.Meh);
+            assertTailJudgement(HitResult.Bad);
         }
 
         [Test]

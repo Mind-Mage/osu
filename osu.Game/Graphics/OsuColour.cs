@@ -88,7 +88,7 @@ namespace osu.Game.Graphics
                 case HitResult.ComboBreak:
                     return Red;
 
-                case HitResult.Meh:
+                case HitResult.Bad:
                     return Yellow;
 
                 case HitResult.Ok:

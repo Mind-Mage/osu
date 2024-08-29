@@ -55,7 +55,7 @@ namespace osu.Game.Rulesets.Osu.Mods
                 foreach (BreakPeriod b in drawableRuleset.Beatmap.Breaks)
                     periods.Add(new Period(b.StartTime, getValidJudgementTime(ruleset.Objects.First(h => h.StartTime >= b.EndTime)) - 1));
 
-                static double getValidJudgementTime(HitObject hitObject) => hitObject.StartTime - hitObject.HitWindows.WindowFor(HitResult.Meh);
+                static double getValidJudgementTime(HitObject hitObject) => hitObject.StartTime - hitObject.HitWindows.WindowFor(HitResult.Bad);
             }
 
             nonGameplayPeriods = new PeriodTracker(periods);

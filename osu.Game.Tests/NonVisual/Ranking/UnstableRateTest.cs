@@ -35,7 +35,7 @@ namespace osu.Game.Tests.NonVisual.Ranking
             {
                 new HitEvent(-100, 1.0, HitResult.Miss, new HitObject(), null, null),
                 new HitEvent(0, 1.0, HitResult.Great, new HitObject(), null, null),
-                new HitEvent(200, 1.0, HitResult.Meh, new HitObject { HitWindows = HitWindows.Empty }, null, null),
+                new HitEvent(200, 1.0, HitResult.Bad, new HitObject { HitWindows = HitWindows.Empty }, null, null),
             };
 
             var unstableRate = new UnstableRate(events);

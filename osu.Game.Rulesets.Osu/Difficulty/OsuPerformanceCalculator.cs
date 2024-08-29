@@ -38,7 +38,7 @@ namespace osu.Game.Rulesets.Osu.Difficulty
             scoreMaxCombo = score.MaxCombo;
             countGreat = score.Statistics.GetValueOrDefault(HitResult.Great);
             countOk = score.Statistics.GetValueOrDefault(HitResult.Ok);
-            countMeh = score.Statistics.GetValueOrDefault(HitResult.Meh);
+            countMeh = score.Statistics.GetValueOrDefault(HitResult.Bad);
             countMiss = score.Statistics.GetValueOrDefault(HitResult.Miss);
             effectiveMissCount = calculateEffectiveMissCount(osuAttributes);
 

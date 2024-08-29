@@ -35,10 +35,10 @@ namespace osu.Game.Rulesets.Scoring
         [Order(5)]
         Miss,
 
-        [Description(@"Meh")]
-        [EnumMember(Value = "meh")]
+        [Description(@"Bad")]
+        [EnumMember(Value = "Bad")]
         [Order(4)]
-        Meh,
+        Bad,
 
         [Description(@"OK")]
         [EnumMember(Value = "ok")]
@@ -185,7 +185,7 @@ namespace osu.Game.Rulesets.Scoring
             switch (result)
             {
                 case HitResult.Miss:
-                case HitResult.Meh:
+                case HitResult.Bad:
                 case HitResult.Ok:
                 case HitResult.Good:
                 case HitResult.Great:

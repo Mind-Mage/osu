@@ -45,10 +45,10 @@ namespace osu.Game.Tests.Rulesets.Scoring
             };
         }
 
-        [TestCase(ScoringMode.Standardised, HitResult.Meh, 83_398)]
+        [TestCase(ScoringMode.Standardised, HitResult.Bad, 83_398)]
         [TestCase(ScoringMode.Standardised, HitResult.Ok, 168_724)]
         [TestCase(ScoringMode.Standardised, HitResult.Great, 1_000_000)]
-        [TestCase(ScoringMode.Classic, HitResult.Meh, 8_343)]
+        [TestCase(ScoringMode.Classic, HitResult.Bad, 8_343)]
         [TestCase(ScoringMode.Classic, HitResult.Ok, 16_878)]
         [TestCase(ScoringMode.Classic, HitResult.Great, 100_033)]
         public void TestSingleOsuHit(ScoringMode scoringMode, HitResult hitResult, int expectedScore)
@@ -75,7 +75,7 @@ namespace osu.Game.Tests.Rulesets.Scoring
         /// This test intentionally misses the 3rd hitobject to achieve lower than 75% accuracy and 50% max combo.
         /// </remarks>
         [TestCase(ScoringMode.Standardised, HitResult.Miss, HitResult.Great, 0)]
-        [TestCase(ScoringMode.Standardised, HitResult.Meh, HitResult.Great, 34_734)]
+        [TestCase(ScoringMode.Standardised, HitResult.Bad, HitResult.Great, 34_734)]
         [TestCase(ScoringMode.Standardised, HitResult.Ok, HitResult.Great, 69_925)]
         [TestCase(ScoringMode.Standardised, HitResult.Good, HitResult.Perfect, 154_499)]
         [TestCase(ScoringMode.Standardised, HitResult.Great, HitResult.Great, 326_963)]
@@ -88,7 +88,7 @@ namespace osu.Game.Tests.Rulesets.Scoring
         [TestCase(ScoringMode.Standardised, HitResult.SmallBonus, HitResult.SmallBonus, 1_000_030)]
         [TestCase(ScoringMode.Standardised, HitResult.LargeBonus, HitResult.LargeBonus, 1_000_150)]
         [TestCase(ScoringMode.Classic, HitResult.Miss, HitResult.Great, 0)]
-        [TestCase(ScoringMode.Classic, HitResult.Meh, HitResult.Great, 3_492)]
+        [TestCase(ScoringMode.Classic, HitResult.Bad, HitResult.Great, 3_492)]
         [TestCase(ScoringMode.Classic, HitResult.Ok, HitResult.Great, 7_029)]
         [TestCase(ScoringMode.Classic, HitResult.Good, HitResult.Perfect, 15_530)]
         [TestCase(ScoringMode.Classic, HitResult.Great, HitResult.Great, 32_867)]
@@ -162,7 +162,7 @@ namespace osu.Game.Tests.Rulesets.Scoring
         }
 
         [TestCase(HitResult.IgnoreHit, HitResult.IgnoreMiss)]
-        [TestCase(HitResult.Meh, HitResult.Miss)]
+        [TestCase(HitResult.Bad, HitResult.Miss)]
         [TestCase(HitResult.Ok, HitResult.Miss)]
         [TestCase(HitResult.Good, HitResult.Miss)]
         [TestCase(HitResult.Great, HitResult.Miss)]
@@ -181,7 +181,7 @@ namespace osu.Game.Tests.Rulesets.Scoring
         [TestCase(HitResult.IgnoreMiss, false)]
         [TestCase(HitResult.IgnoreHit, false)]
         [TestCase(HitResult.Miss, true)]
-        [TestCase(HitResult.Meh, true)]
+        [TestCase(HitResult.Bad, true)]
         [TestCase(HitResult.Ok, true)]
         [TestCase(HitResult.Good, true)]
         [TestCase(HitResult.Great, true)]
@@ -202,7 +202,7 @@ namespace osu.Game.Tests.Rulesets.Scoring
         [TestCase(HitResult.IgnoreMiss, false)]
         [TestCase(HitResult.IgnoreHit, false)]
         [TestCase(HitResult.Miss, true)]
-        [TestCase(HitResult.Meh, true)]
+        [TestCase(HitResult.Bad, true)]
         [TestCase(HitResult.Ok, true)]
         [TestCase(HitResult.Good, true)]
         [TestCase(HitResult.Great, true)]
@@ -223,7 +223,7 @@ namespace osu.Game.Tests.Rulesets.Scoring
         [TestCase(HitResult.IgnoreMiss, false)]
         [TestCase(HitResult.IgnoreHit, false)]
         [TestCase(HitResult.Miss, false)]
-        [TestCase(HitResult.Meh, false)]
+        [TestCase(HitResult.Bad, false)]
         [TestCase(HitResult.Ok, false)]
         [TestCase(HitResult.Good, false)]
         [TestCase(HitResult.Great, false)]
@@ -244,7 +244,7 @@ namespace osu.Game.Tests.Rulesets.Scoring
         [TestCase(HitResult.IgnoreMiss, false)]
         [TestCase(HitResult.IgnoreHit, true)]
         [TestCase(HitResult.Miss, false)]
-        [TestCase(HitResult.Meh, true)]
+        [TestCase(HitResult.Bad, true)]
         [TestCase(HitResult.Ok, true)]
         [TestCase(HitResult.Good, true)]
         [TestCase(HitResult.Great, true)]
@@ -265,7 +265,7 @@ namespace osu.Game.Tests.Rulesets.Scoring
         [TestCase(HitResult.IgnoreMiss, false)]
         [TestCase(HitResult.IgnoreHit, false)]
         [TestCase(HitResult.Miss, true)]
-        [TestCase(HitResult.Meh, true)]
+        [TestCase(HitResult.Bad, true)]
         [TestCase(HitResult.Ok, true)]
         [TestCase(HitResult.Good, true)]
         [TestCase(HitResult.Great, true)]

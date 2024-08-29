@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Mania.Judgements
         {
             switch (result)
             {
-                case HitResult.Meh:
+                case HitResult.Bad:
                     return -DEFAULT_MAX_HEALTH_INCREASE * 0.5;
 
                 case HitResult.Ok:

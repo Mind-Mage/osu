@@ -64,6 +64,21 @@ namespace osu.Game.Overlays.Settings.Sections.Input
                     LabelText = MouseSettingsStrings.CursorSensitivity,
                     Current = localSensitivity
                 },
+
+                //--------------------zack code------------
+                new SettingsSlider<float, SizeSlider<float>>
+                {
+                    LabelText = MouseSettingsStrings.CursorTrailDensity, // You can localize this string if needed
+                    Current = osuConfig.GetBindable<float>(OsuSetting.CursorTrailDensity),
+                    KeyboardStep = 0.1f
+                },
+                 new SettingsSlider<float, SizeSlider<float>>
+                {
+                    LabelText = MouseSettingsStrings.CursorTrailSize, // New slider for size
+                    Current = osuConfig.GetBindable<float>(OsuSetting.CursorTrailSize),
+                    KeyboardStep = 0.1f
+                },
+                 //--------------------------------------------
                 confineMouseModeSetting = new SettingsEnumDropdown<OsuConfineMouseMode>
                 {
                     LabelText = MouseSettingsStrings.ConfineMouseMode,
